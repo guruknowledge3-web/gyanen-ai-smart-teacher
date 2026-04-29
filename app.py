@@ -6,7 +6,7 @@ import os
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Load model
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
 # Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
