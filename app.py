@@ -19,9 +19,7 @@ generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
  def generate_ai_response(prompt):
-
     response = model.generate_content(prompt)
-
     return response.text
 
 if st.button("Generate"):
