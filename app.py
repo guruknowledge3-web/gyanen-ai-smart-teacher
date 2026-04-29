@@ -1,11 +1,11 @@
 import streamlit as st
 import google.generativeai as genai
 
-# Configure API Key
+# Configure API
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-# Load model (stable working version)
-model = genai.GenerativeModel("gemini-1.5-flash-latest")
+# Load model
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 # Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
