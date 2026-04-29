@@ -22,7 +22,7 @@ generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
 # AI function
- def generate_ai_response(prompt):
+def generate_ai_response(prompt):
     response = model.generate_content(
         prompt,
         generation_config={
