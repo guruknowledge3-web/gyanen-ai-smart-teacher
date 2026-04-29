@@ -1,27 +1,33 @@
 import streamlit as st
-import requests
 import google.generativeai as genai
 import os
 
+# Configure API Key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+# Load model
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+# Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
 
+# Title
 st.title("🎓 Gyanen AI Smart Teacher")
 st.write("AI-powered multilingual learning assistant using Gemma.")
 
+# Input
 topic = st.text_input("Enter Topic:", "Electric Charges")
 
 generate_explanation = st.checkbox("Generate Explanation")
 generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
- def generate_ai_response(prompt):
+# AI function
+def generate_ai_response(prompt):
     response = model.generate_content(prompt)
     return response.text
 
+# Button
 if st.button("Generate"):
 
     if generate_explanation:
@@ -34,7 +40,6 @@ if st.button("Generate"):
         """
 
         response = generate_ai_response(prompt)
-
         st.write(response)
 
     if generate_mcqs:
@@ -47,7 +52,6 @@ if st.button("Generate"):
         """
 
         response = generate_ai_response(prompt)
-
         st.write(response)
 
     if generate_script:
@@ -60,5 +64,4 @@ if st.button("Generate"):
         """
 
         response = generate_ai_response(prompt)
-
         st.write(response)
