@@ -1,5 +1,11 @@
 import streamlit as st
 import requests
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
 
@@ -12,9 +18,11 @@ generate_explanation = st.checkbox("Generate Explanation")
 generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
-def generate_ai_response(prompt):
-    # Placeholder for AI integration
-    return f"AI Response for: {prompt}"
+ def generate_ai_response(prompt):
+
+    response = model.generate_content(prompt)
+
+    return response.text
 
 if st.button("Generate"):
 
