@@ -23,14 +23,18 @@ generate_script = st.checkbox("Generate Video Script")
 
 # AI function
 def generate_ai_response(prompt):
-    response = model.generate_content(
-        prompt,
-        generation_config={
-            "temperature": 0.7,
-            "max_output_tokens": 1024,
-        }
-    )
-    return response.text
+    try:
+        response = model.generate_content(
+            prompt,
+            generation_config={
+                "temperature": 0.5,
+                "max_output_tokens": 300
+            }
+        )
+        return response.text
+
+    except Exception as e:
+        return "⚠️ API limit reached. Please wait 1–2 minutes and try again."
 
 # Button
 if st.button("Generate"):
