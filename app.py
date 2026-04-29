@@ -4,8 +4,8 @@ import google.generativeai as genai
 # Configure API Key
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-# Load model
-model = genai.GenerativeModel("gemini-1.5-flash-latest")   # fast & free tier
+# Load model (stable working version)
+model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
 # Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
@@ -22,8 +22,14 @@ generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
 # AI function
-def generate_ai_response(prompt):
-    response = model.generate_content(prompt)
+ def generate_ai_response(prompt):
+    response = model.generate_content(
+        prompt,
+        generation_config={
+            "temperature": 0.7,
+            "max_output_tokens": 1024,
+        }
+    )
     return response.text
 
 # Button
