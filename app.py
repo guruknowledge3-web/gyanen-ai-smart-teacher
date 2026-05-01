@@ -100,13 +100,13 @@ if st.button("Generate"):
 
     time.sleep(2)  # Prevent rapid API calls
 
-    # ---------------- EXPLANATION ----------------
+# ---------------- EXPLANATION ----------------
 
-    if generate_explanation:
+if generate_explanation:
 
-        st.subheader("📘 Explanation")
+    st.subheader("📘 Explanation")
 
-         prompt = f"""
+    prompt = f"""
 Explain the topic {topic}
 from subject {subject}
 for Class 12 students.
@@ -121,19 +121,18 @@ Include:
 Use {language}.
 """
 
-        response = generate_ai_response(prompt)
+    response = generate_ai_response(prompt)
 
-        st.write(response)
+    st.write(response)
 
-        # NEW: Download button
-         pdf_file = create_pdf(response)
+    pdf_file = create_pdf(response)
 
-st.download_button(
-    label="📄 Download Notes (PDF)",
-    data=pdf_file,
-    file_name=f"{topic}_notes.pdf",
-    mime="application/pdf"
-)
+    st.download_button(
+        label="📄 Download Notes (PDF)",
+        data=pdf_file,
+        file_name=f"{topic}_notes.pdf",
+        mime="application/pdf"
+    )
     # ---------------- MCQs ----------------
 
 if generate_mcqs:
