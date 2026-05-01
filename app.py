@@ -53,7 +53,7 @@ generate_revision = st.checkbox("Generate Revision Notes")
 
 # ⭐ MOVE PDF FUNCTION HERE (OUTSIDE)
 
-  def generate_ai_response(prompt):
+def generate_ai_response(prompt):
 
     try:
         response = client.models.generate_content(
@@ -92,7 +92,7 @@ def create_pdf(text):
 
 # ---------------- BUTTON ----------------
 
- if st.button("Generate"):
+if st.button("Generate"):
 
     if not topic.strip():
         st.warning("⚠️ Please enter a topic first.")
@@ -136,7 +136,7 @@ st.download_button(
 )
     # ---------------- MCQs ----------------
 
-    if generate_mcqs:
+if generate_mcqs:
 
         st.subheader("📝 MCQs")
         prompt = f"""
@@ -165,7 +165,7 @@ st.download_button(
 
     # ---------------- VIDEO SCRIPT ----------------
 
-    if generate_script:
+if generate_script:
 
         st.subheader("🎬 Video Script") 
         
