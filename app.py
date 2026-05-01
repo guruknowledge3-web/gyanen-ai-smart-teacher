@@ -63,8 +63,8 @@ def generate_ai_response(prompt):
 
         return response.text
 
-    except Exception:
-        return "⚠️ API limit reached."
+     except Exception as e:
+        return f"⚠️ Error: {str(e)}"
 
 
 # PDF Function
