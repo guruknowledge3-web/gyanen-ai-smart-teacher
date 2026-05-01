@@ -133,12 +133,14 @@ Use {language}.
         file_name=f"{topic}_notes.pdf",
         mime="application/pdf"
     )
-    # ---------------- MCQs ----------------
+
+  # ---------------- MCQs ----------------
 
 if generate_mcqs:
 
-        st.subheader("📝 MCQs")
-        prompt = f"""
+    st.subheader("📝 MCQs")
+
+    prompt = f"""
 Generate 5 {difficulty} MCQs
 on topic {topic}
 from subject {subject}
@@ -149,26 +151,26 @@ Use {language}.
 Include answers.
 """
 
-         response = generate_ai_response(prompt)
+    response = generate_ai_response(prompt)
 
-        st.write(response)
+    st.write(response)
 
-         pdf_file = create_pdf(response)
+    pdf_file = create_pdf(response)
 
-st.download_button(
-    label="📄 Download MCQs (PDF)",
-    data=pdf_file,
-    file_name=f"{topic}_mcqs.pdf",
-    mime="application/pdf"
-)
+    st.download_button(
+        label="📄 Download MCQs (PDF)",
+        data=pdf_file,
+        file_name=f"{topic}_mcqs.pdf",
+        mime="application/pdf"
+    )
 
     # ---------------- VIDEO SCRIPT ----------------
 
 if generate_script:
 
-        st.subheader("🎬 Video Script") 
+   st.subheader("🎬 Video Script") 
         
-     prompt = f"""
+   prompt = f"""
 Create a YouTube teaching script
 on topic {topic}
 from subject {subject}
@@ -190,11 +192,11 @@ Include:
 
          pdf_file = create_pdf(response)
 
-st.download_button(
-    label="📄 Download Script (PDF)",
-    data=pdf_file,
-    file_name=f"{topic}_script.pdf",
-    mime="application/pdf"
+     st.download_button(
+        label="📄 Download Script (PDF)",
+        data=pdf_file,
+        file_name=f"{topic}_script.pdf",
+        mime="application/pdf"
 )
 
 # ---------------- REVISION NOTES ----------------
