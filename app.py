@@ -75,7 +75,7 @@ def create_pdf(text):
 
     styles = getSampleStyleSheet()
 
-    pdf = SimpleDocTemplate(buffer)
+    pdf = SimpleDocTemplate(buffer, rightMargin=20, leftMargin=20)
 
     story = []
 
