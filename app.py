@@ -50,36 +50,23 @@ generate_revision = st.checkbox("Generate Revision Notes")
 
 # ---------------- AI FUNCTION ----------------
 
- def generate_ai_response(prompt):
-
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",
-            contents=prompt
-        )
-
-        return response.text
-
-    except Exception:
-        return "⚠️ API limit reached. Please wait 1–2 minutes and try again."
-
-
 # ⭐ MOVE PDF FUNCTION HERE (OUTSIDE)
 
- def generate_ai_response(prompt):
+  def generate_ai_response(prompt):
 
     try:
         response = client.models.generate_content(
             model="gemini-2.0-flash-lite",
             contents=prompt
         )
+
         return response.text
 
     except Exception:
         return "⚠️ API limit reached."
 
 
-# ✅ PDF function (separate)
+# PDF Function
 
 def create_pdf(text):
 
@@ -101,16 +88,6 @@ def create_pdf(text):
     buffer.seek(0)
 
     return buffer
-    
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",
-            contents=prompt
-        )
-        return response.text
-
-    except Exception:
-        return "⚠️ API limit reached. Please wait 1–2 minutes and try again."
 
 # ---------------- BUTTON ----------------
 
