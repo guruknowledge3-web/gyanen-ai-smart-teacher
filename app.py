@@ -1,18 +1,11 @@
 import streamlit as st
 from google import genai
+import time
 
-# Configure API Key
-genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-
-# Load model (NEW working model)
-client = genai.Client(api_key=st.secrets["GOOGLE_API_KEY"])
-
-def generate_ai_response(prompt):
-    response = client.models.generate_content(
-        model="gemini-2.0-flash-lite",
-        contents=prompt
-    )
-    return response.text
+# Configure API
+client = genai.Client(
+    api_key=st.secrets["GOOGLE_API_KEY"]
+)
 
 # Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
@@ -28,32 +21,32 @@ generate_explanation = st.checkbox("Generate Explanation")
 generate_mcqs = st.checkbox("Generate MCQs")
 generate_script = st.checkbox("Generate Video Script")
 
-# AI function
+# AI function (ONLY ONE FUNCTION)
 def generate_ai_response(prompt):
     try:
-        response = model.generate_content(
-            prompt,
-            generation_config={
-                "temperature": 0.5,
-                "max_output_tokens": 300
-            }
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-lite",
+            contents=prompt
         )
         return response.text
 
-    except Exception as e:
+    except Exception:
         return "⚠️ API limit reached. Please wait 1–2 minutes and try again."
 
 # Button
 if st.button("Generate"):
 
+    time.sleep(2)  # prevents rapid API calls
+
     if generate_explanation:
         st.subheader("📘 Explanation")
 
         prompt = f"""
-        Explain the topic {topic} for Class 12 students.
-        Use Hindi + English.
-        Include examples and important points.
-        """
+Explain the topic {topic} for Class 12 students.
+
+Use Hindi + English.
+Include examples and important points.
+"""
 
         response = generate_ai_response(prompt)
         st.write(response)
@@ -62,10 +55,11 @@ if st.button("Generate"):
         st.subheader("📝 MCQs")
 
         prompt = f"""
-        Generate 5 MCQs on topic {topic}
-        for Class 12 students.
-        Include answers.
-        """
+Generate 5 MCQs on topic {topic}
+for Class 12 students.
+
+Include answers.
+"""
 
         response = generate_ai_response(prompt)
         st.write(response)
@@ -74,10 +68,10 @@ if st.button("Generate"):
         st.subheader("🎬 Video Script")
 
         prompt = f"""
-        Create a YouTube teaching script
-        on topic {topic}
-        in Hindi + English.
-        """
+Create a YouTube teaching script
+on topic {topic}
+in Hindi + English.
+"""
 
         response = generate_ai_response(prompt)
         st.write(response)
