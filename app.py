@@ -98,15 +98,15 @@ if st.button("Generate"):
         st.warning("⚠️ Please enter a topic first.")
         st.stop()
 
-    time.sleep(2)  # Prevent rapid API calls
+    time.sleep(2)
 
-# ---------------- EXPLANATION ----------------
+    # ---------------- EXPLANATION ----------------
 
-if generate_explanation:
+    if generate_explanation:
 
-    st.subheader("📘 Explanation")
+        st.subheader("📘 Explanation")
 
-    prompt = f"""
+        prompt = f"""
 Explain the topic {topic}
 from subject {subject}
 for Class 12 students.
@@ -121,26 +121,26 @@ Include:
 Use {language}.
 """
 
-    response = generate_ai_response(prompt)
+        response = generate_ai_response(prompt)
 
-    st.write(response)
+        st.write(response)
 
-    pdf_file = create_pdf(response)
+        pdf_file = create_pdf(response)
 
-    st.download_button(
-        label="📄 Download Notes (PDF)",
-        data=pdf_file,
-        file_name=f"{topic}_notes.pdf",
-        mime="application/pdf"
-    )
+        st.download_button(
+            label="📄 Download Notes (PDF)",
+            data=pdf_file,
+            file_name=f"{topic}_notes.pdf",
+            mime="application/pdf"
+        )
 
-  # ---------------- MCQs ----------------
+    # ---------------- MCQs ----------------
 
-if generate_mcqs:
+    if generate_mcqs:
 
-    st.subheader("📝 MCQs")
+        st.subheader("📝 MCQs")
 
-    prompt = f"""
+        prompt = f"""
 Generate 5 {difficulty} MCQs
 on topic {topic}
 from subject {subject}
@@ -151,26 +151,26 @@ Use {language}.
 Include answers.
 """
 
-    response = generate_ai_response(prompt)
+        response = generate_ai_response(prompt)
 
-    st.write(response)
+        st.write(response)
 
-    pdf_file = create_pdf(response)
+        pdf_file = create_pdf(response)
 
-    st.download_button(
-        label="📄 Download MCQs (PDF)",
-        data=pdf_file,
-        file_name=f"{topic}_mcqs.pdf",
-        mime="application/pdf"
-    )
+        st.download_button(
+            label="📄 Download MCQs (PDF)",
+            data=pdf_file,
+            file_name=f"{topic}_mcqs.pdf",
+            mime="application/pdf"
+        )
 
     # ---------------- VIDEO SCRIPT ----------------
 
-if generate_script:
+    if generate_script:
 
-   st.subheader("🎬 Video Script") 
-        
-   prompt = f"""
+        st.subheader("🎬 Video Script")
+
+        prompt = f"""
 Create a YouTube teaching script
 on topic {topic}
 from subject {subject}
@@ -190,22 +190,22 @@ Include:
 
         st.write(response)
 
-         pdf_file = create_pdf(response)
+        pdf_file = create_pdf(response)
 
-     st.download_button(
-        label="📄 Download Script (PDF)",
-        data=pdf_file,
-        file_name=f"{topic}_script.pdf",
-        mime="application/pdf"
-)
+        st.download_button(
+            label="📄 Download Script (PDF)",
+            data=pdf_file,
+            file_name=f"{topic}_script.pdf",
+            mime="application/pdf"
+        )
 
-# ---------------- REVISION NOTES ----------------
+    # ---------------- REVISION NOTES ----------------
 
-if generate_revision:
+    if generate_revision:
 
-    st.subheader("📝 Revision Notes")
+        st.subheader("📌 Revision Notes")
 
-    prompt = f"""
+        prompt = f"""
 Create short revision notes
 on topic {topic}
 from subject {subject}
@@ -221,16 +221,15 @@ Include:
 - Quick revision summary
 """
 
-    response = generate_ai_response(prompt)
+        response = generate_ai_response(prompt)
 
-    st.write(response)
+        st.write(response)
 
-    # PDF download
-    pdf_file = create_pdf(response)
+        pdf_file = create_pdf(response)
 
-    st.download_button(
-        label="📄 Download Revision Notes (PDF)",
-        data=pdf_file,
-        file_name=f"{topic}_revision_notes.pdf",
-        mime="application/pdf"
-    )
+        st.download_button(
+            label="📄 Download Revision Notes (PDF)",
+            data=pdf_file,
+            file_name=f"{topic}_revision_notes.pdf",
+            mime="application/pdf"
+        )
