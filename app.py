@@ -15,10 +15,11 @@ client = genai.Client(
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
 
 # Title
- st.image(
+
+st.image(
     "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
     width=80
- )
+)
 
 st.title("🎓 Gyanen AI Smart Teacher")
 st.write("AI-powered multilingual learning assistant using Gemma.")
