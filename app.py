@@ -15,10 +15,11 @@ client = genai.Client(
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
 
 # Title
-st.image(
+ st.image(
     "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
     width=80
-)
+ )
+
 st.title("🎓 Gyanen AI Smart Teacher")
 st.write("AI-powered multilingual learning assistant using Gemma.")
 
@@ -64,6 +65,21 @@ generate_revision = st.checkbox("Generate Revision Notes")
 
 
 # ⭐ MOVE PDF FUNCTION HERE (OUTSIDE)
+
+ def generate_ai_response(prompt):
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-lite",
+            contents=prompt
+        )
+        return response.text
+
+    except Exception:
+        return "⚠️ API limit reached."
+
+
+# ✅ PDF function (separate)
 
 def create_pdf(text):
 
