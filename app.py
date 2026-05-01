@@ -51,22 +51,19 @@ generate_revision = st.checkbox("Generate Revision Notes")
 
 # ---------------- AI FUNCTION ----------------
 
-# ⭐ MOVE PDF FUNCTION HERE (OUTSIDE)
-
 def generate_ai_response(prompt):
-
     try:
         response = client.models.generate_content(
             model="gemini-2.0-flash-lite",
             contents=prompt
         )
-
         return response.text
-        except Exception as e:
+
+    except Exception as e:
         return f"⚠️ Error: {str(e)}"
 
 
-# PDF Function
+# ---------------- PDF FUNCTION ----------------
 
 def create_pdf(text):
 
@@ -74,7 +71,7 @@ def create_pdf(text):
 
     styles = getSampleStyleSheet()
 
-    pdf = SimpleDocTemplate(buffer, rightMargin=20, leftMargin=20)
+    pdf = SimpleDocTemplate(buffer)
 
     story = []
 
@@ -88,6 +85,7 @@ def create_pdf(text):
     buffer.seek(0)
 
     return buffer
+ 
 
 # ---------------- BUTTON ----------------
 
