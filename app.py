@@ -1,11 +1,18 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
 
 # Configure API Key
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # Load model (NEW working model)
-model = genai.GenerativeModel("gemini-2.0-flash-lite")
+client = genai.Client(api_key=st.secrets["GOOGLE_API_KEY"])
+
+def generate_ai_response(prompt):
+    response = client.models.generate_content(
+        model="gemini-2.0-flash-lite",
+        contents=prompt
+    )
+    return response.text
 
 # Page config
 st.set_page_config(page_title="Gyanen AI Smart Teacher")
